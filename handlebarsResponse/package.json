@@ -1,0 +1,18 @@
+{
+  "name": "Charlies Handlebars boilerplate template",
+  "version": "1.0.0",
+  "description": "Basic template to speed up web developement",
+  "scripts": {
+    "start": "node server.js"
+     },
+     "author": "Charlie Storey",
+     "dependencies": {
+       "body-parser": "^1.15.2",
+       "express": "^4.13.4",
+       "express": "^4.14.0",
+       "express3-handlebars": "^0.5.2",
+       "mongodb": "^2.1.18",
+       "path": "^0.12.7",
+       "request": "^2.72.0"
+     }
+}
