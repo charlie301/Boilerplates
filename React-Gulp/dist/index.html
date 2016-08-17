@@ -1,14 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <head></head>
+  <head>
+       <title> React Test </title>
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ </head>
   <body>
+       <div class='container'>
+       <div class="jumbotron">
+            <h1> This is a test </h1>
+            <div id="jtest"></div>
+       </div>
 
-    <div id="app"></div>
+       <div id="tableList"></div>
 
+       <div id="app"></div>
+
+       <div id="area"></div>
+
+       <div id="comp"></div>
+
+       <div id="compAjax"></div>
+
+       </div>
+
+    <!-- build:js -->
+    <script   src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.0/react.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.0/react-dom.min.js"></script>
     <script src="src/Child.js"></script>
     <script src="src/Parent.js"></script>
     <script src="src/App.js"></script>
+    <!-- endbuild -->
+
   </body>
 </html>

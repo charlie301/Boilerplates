@@ -42,3 +42,24 @@ gulp.task('default', ['watch']);
 
 /* PRODUCTION TASKS
 =====================*/
+
+//concat JS files on final build
+gulp.task('build', function(){
+     gulp.src(path.JS)
+          .pipe(react())
+          .pipe(concat(path.MINIFIED_OUT))
+          .pipe(uglify(path.MINIFIED_OUT))
+          .pipe(gulp.dest(path.DEST_BUILD));
+});
+
+//rename js file on build to save manual changes
+gulp.task('replaceHTML', function(){
+     gulp.src(path.HTML)
+          .pipe(htmlreplace({
+               'js': 'build/' + path.MINIFIED_OUT
+          }))
+          .pipe(gulp.dest(path.DEST));
+});
+
+//Production command
+gulp.task('build', ['replaceHTML', 'build']);
