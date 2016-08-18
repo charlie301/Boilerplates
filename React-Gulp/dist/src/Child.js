@@ -73,7 +73,7 @@ var Appoint = React.createClass({displayName: "Appoint",
 });
 
 /*   complex data call via AJAC
-========================================*/
+==============================================================================*/
 
 //Basic data loaded from inline JSON
 var Complex = React.createClass({displayName: "Complex",
@@ -84,7 +84,7 @@ var Complex = React.createClass({displayName: "Complex",
                }
      },
 
-     //Ajax call on the intial load
+     //Ajax call on the intial load - Called only one beforew rendering
      componentDidMount: function(){
           this.serverRequest = $.get('data.json', function(result){
                var barList = result;
@@ -204,3 +204,5 @@ var ComplexAjax = React.createClass({displayName: "ComplexAjax",
           )
      }
 });
+
+var eachL
