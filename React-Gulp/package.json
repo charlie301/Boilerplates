@@ -9,6 +9,9 @@
   "author": "charlie storey",
   "license": "ISC",
   "devDependencies": {
+    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-react": "^6.11.1",
+    "babelify": "^7.3.0",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
     "gulp-html-replace": "^1.6.1",
