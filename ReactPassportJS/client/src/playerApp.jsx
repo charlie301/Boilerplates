@@ -1,8 +1,3 @@
-/* ============================================================================
-                    PLAYER COMPONENT REFS FOR SMALLER VER
-==============================================================================*/
-
-
 //UTILITY =====================================================================
 var PLAYERS = [
      {
@@ -44,6 +39,7 @@ Header.PropTypes = {
 
 // PLAYER COMPONENT ===========================================================
 
+
 //Component [2]  <!-- Nested in container data [Template for player]
 function Player(props){
      return (
@@ -52,7 +48,7 @@ function Player(props){
                          {props.name}
                     </div>
                     <div className="player-score"> </div>
-                         <Counter score={props.score}/>
+                         <Counter initialScore={props.score}/>
                </div>
      );
 }
@@ -64,20 +60,51 @@ Player.PropTypes = {
 
 //COUNTER COMPONENT ===========================================================
 
-//Component [3] <-- Nested in <Player> instance
-function Counter(props){
-     return(
-          <div className="counter">
-               <button className="counter-action-decrement"> - </button>
-               <div className="counter-score">{props.score}</div>
-               <button className="counter-action-increment"> + </button>
-          </div>
-     );
-}
+var Counter = React.createClass({
+     propTypes: {
+        initialScore: React.PropTypes.number.isRequired,
+     },
+     getInitialState: function(){
+          return{
+               score: this.props.initialScore
+          }
+     },
+     incScore: function(e){
+          this.setState({
+               score: (this.state.score + 1)
+          });
+     },
+     decScore: function(e){
+          this.setState({
+               score: this.isBelowOne()
+          });
+     },
+     isBelowOne: function(){
+          if(this.state.score == 0){
+               alert('You cannont go below');
+               return 0;
+          }
+          else{
+               //Check you can actually do this...
+               return this.state.score - 1;
+          }
+     },
+     render: function(){
+          return(
+               <div className="counter">
+                    <button onClick={this.decScore}
 
-Counter.PropTypes = {
-     score: React.PropTypes.number.isRequired,
-}
+                         className="counter-action-decrement"> - </button>
+
+               <div className="counter-score">{this.state.score}</div>
+
+                    <button onClick={this.incScore}
+                         className="counter-action-increment"> + </button>
+               </div>
+          );
+     }
+});
+
 
 //APPLICATION COMPONENTS ======================================================
 
