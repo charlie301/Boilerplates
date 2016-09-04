@@ -1,6 +1,18 @@
+//React import
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-ReactDOM.render(
-     <h1> test </h1>, document.getElementById('react-app')
-);
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+//React Router and routes export added
+import { browserHistory, Router } from 'react-router';
+import routes from './routes.js';
+
+injectTapEventPlugin();
+
+ReactDOM.render((
+  <MuiThemeProvider muiTheme={getMuiTheme()}>
+    <Router history={browserHistory} routes={routes} />
+  </MuiThemeProvider>), document.getElementById('react-app'));
