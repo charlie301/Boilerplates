@@ -169,9 +169,113 @@ var BookList = React.createClass({
 ==============================================================================*/
 
 var ShippingDetails = React.createClass({
-  render(){
+  getInitialState(){
     return(
-      <h1> Your shipping details </h1>
+      {
+        fullName: '',
+        contactNumber: '',
+        shippingAddress: '',
+        error: false
+      }
+    )
+  },
+
+  _renderError(){
+    if(this.state.error){
+      return(
+        <div className="alert alert-danger">
+          {this.state.error}
+        </div>
+      );
+    }
+  },
+
+  _validateInput(){
+
+    if(this.state.fullName === ''){
+      this.setState({error: 'Name needed'});
+    }else if(this.state.contactNumber === ''){
+      this.setState({error: 'Number required'});
+    }else if(this.state.shippingAddress === ''){
+      this.setState({error: 'Shipping address required'});
+    }else{
+      console.log('all true called');
+      this.setState({error: false});
+      return true;
+    }
+ },
+
+ handleSubmit(e){
+   e.preventDefault();
+   let formData = {
+     fullName: this.state.fullName,
+     contactNumber: this.state.contactNumber,
+     shippingAddress: this.state.shippingAddress
+   }
+   console.log(formData.fullName);
+   if(this._validateInput()){
+     this.props.updateFormData(formData);
+   }
+ },
+
+ handleChange(event, attr){
+    var newState = this.state;
+    newState[attr] = event.target.value;
+    this.setState(newState);
+    console.log(this.state);
+ },
+
+  render(){
+
+    let errorMessage = this._renderError();
+
+    return(
+      <div>
+        <h1> Enter shipping information </h1>
+        {errorMessage}
+        <div style={{width:200}}>
+          <form onSubmit={this.handleSubmit}>
+
+            <div className="form-group">
+              <input className="form-control"
+                     type="text"
+                     placeholder="full name"
+                     value={this.state.fullName}
+                     onChange={function(event){
+                       return this.handleChange(event, 'fullName')
+                     }.bind(this)}/>
+              </div>
+
+              <div className="form-group">
+                <input className="form-control"
+                       type="text"
+                       placeholder="Contact Number"
+                       value={this.state.contactNumber}
+                       onChange={function(event){
+                         return this.handleChange(event, 'contactNumber')
+                       }.bind(this)}/>
+              </div>
+
+              <div className="form-group">
+                <input className="form-control"
+                       type="text"
+                       placeholder="Shipping address"
+                       value={this.state.shippingAddress}
+                       onChange={function(event){
+                         return this.handleChange(event, 'shippingAddress')
+                       }.bind(this)}/>
+              </div>
+
+              <div className="form-group">
+                <button type="submit"
+                        ref="submit"
+                        className="btn btn-success"> Submit
+                </button>
+              </div>
+
+          </form>
+        </div>
+        </div>
     )
   }
 });
