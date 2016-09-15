@@ -27,7 +27,9 @@ class CarDetail extends Component {
                }
           });
 
-          //return car object and format
+
+          /* Be sure to append [0] to car object returned from above for
+             correct rendering purposes below. */
           return(
                <div>
                   <h1>{car[0].name}</h1>
