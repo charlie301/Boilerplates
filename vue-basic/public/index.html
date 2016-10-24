@@ -26,11 +26,43 @@
 
           <!-- Vue instance is being bound to here -->
           <div id="app">
-            {message}
+            {{message}}
+          </div>
+
+          <!-- binding data to title -->
+          <div id="app2">
+            {{message}}
+            <span v-bind:title="secretNote">Hover over for secret note</span>
+          </div>
+
+          <!-- Using boolean conditionals for display -->
+          <div id="cond">
+            <p v-if="seen"> Now you see me </p>
+          </div>
+
+          <!-- Iterating over array of objects -->
+          <div id="loop">
+            <ul>
+              <li v-for="person in names">
+                {{person.name}}
+              </li>
+            </ul>
           </div>
 
         </div>
         <div class="panel-body">
+
+          <!-- Binding functions to componenets -->
+          <div id="revString">
+            <p> {{message}} </p>
+            <button v-on:click="reverse">Reverse String </button>
+          </div>
+
+          <!-- Data binding -->
+          <div id="msgBind">
+            <p> {{message}} </p>
+            <input v-model="message">
+          </div>
 
         </div>
 
