@@ -64,7 +64,14 @@
             <input v-model="message">
           </div>
 
-        </div>
+          <!-- Ajax request and iteration -->
+          <div id="holder">
+            <ol>
+              <name-list v-for="name in users" v-bind:name="name"></name-list>
+            </ol>
+          </div>
+
+        </div><!-- End of panel body -->
 
       </div>
     </div>

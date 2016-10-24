@@ -1,4 +1,9 @@
 import Vue from 'vue/dist/vue.js';
+import vueResource from 'vue-resource';
+Vue.use(vueResource);
+/* ============================================================================
+                    STATELESS COMPONENTS
+==============================================================================*/
 
 /**
 * Create new Vue instance and bind componenet / id to it
@@ -56,5 +61,50 @@ const msgBind = new Vue({
   el: '#msgBind',
   data: {
     message: "change me"
+  }
+});
+
+/* ============================================================================
+                    STATEFUL COMPONENTS
+==============================================================================*/
+
+/**
+* Define custom Vue component
+* @param 1 - Namm of componenet
+* @param 2 - Object {
+*               prop -
+*               template -
+*                 }
+*/
+Vue.component('name-list', {
+  props: ['name'],
+  template: '<li><h1>{{name.name.first}} : </h1>{{name.name.last}}</li>'
+});
+
+/*
+* Ajax exampl
+*/
+const someHolder = new Vue({
+  el: '#holder',
+  data:
+  {
+    users: []
+  },
+  mounted: function()
+  {
+    this.fetchUsers();
+  },
+  methods:
+  {
+    fetchUsers: function()
+    {
+      this.$http.get('https://randomuser.me/api/?results=10&inc=name,nat')
+                .then((response) => {
+                  let responseNames = response.body.results;
+                  this.users = response.body.results;
+                },(response) => {
+                  console.log('Error in request : ' + response);
+                });
+    }
   }
 });
